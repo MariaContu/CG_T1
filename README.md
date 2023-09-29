@@ -2,7 +2,7 @@
 Repositório referente ao desenvolvimento do primeiro trabalho da cadeira de Computação Gráfica.
 
 ## Objetivo
-1. Desenvolver um programa que avalie algoritmos de inclusão de pontos em polígonos de um diagrama de Voronoi, usando OpenGL.
+Desenvolver um programa que avalie algoritmos de inclusão de pontos em polígonos de um diagrama de Voronoi, usando OpenGL.
 
 ## O Que deve ser construido?
 O programa deve gerar um ponto que se move sobre o diagrama e, à cada movimento, deve ser informado em qual dos polígonos do conjunto o ponto está localizado.

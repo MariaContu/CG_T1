@@ -1,6 +1,6 @@
 // **********************************************************************
-// PUCRS/Escola PolitÔøΩcnica
-// COMPUTAÔøΩÔøΩO GRÔøΩFICA
+// PUCRS/Escola Politécnica
+// COMPUTAÇÃO GRÁFICA
 //
 // Programa basico para criar aplicacoes 2D em OpenGL
 //
@@ -53,6 +53,8 @@ int *CoresDosPoligonos;
 
 // Limites logicos da area de desenho
 Ponto Min, Max, PontoClicado;
+
+Ponto pontoMovel;
 
 bool desenha = false;
 bool FoiClicado = false;
@@ -114,27 +116,27 @@ void init()
     srand(0);
     // Define a cor do fundo da tela (AZUL)
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-    
-    Voro.LePoligonos("ListaDePoligonos-V2.txt");
+
+    Voro.LePoligonos("19-polygons.txt");
     Voro.obtemLimites(Min,Max);
     Min.imprime("Minimo:", "\n");
     Max.imprime("Maximo:", "\n");
-    
-    Voro.obtemVizinhosDasArestas();
+
+    pontoMovel = Ponto(4,4);
 
     CoresDosPoligonos = new int[Voro.getNPoligonos()];
 
     for (int i=0; i<Voro.getNPoligonos(); i++)
         CoresDosPoligonos[i] = rand()%90;
 
-    // Ajusta a largura da janela lÔøΩgica
-    // em funÔøΩÔøΩo do tamanho dos polÔøΩgonos
+    // Ajusta a largura da janela lógica
+    // em função do tamanho dos polígonos
     Ponto Largura;
     Largura = Max - Min;
-    
+
     Min = Min - Largura * 0.1;
     Max = Max + Largura * 0.1;
-    
+
 }
 
 double nFrames=0;
@@ -150,7 +152,7 @@ void animate()
     TempoTotal += dt;
     nFrames++;
 
-    if (AccumDeltaT > 1.0/30) // fixa a atualizaÔøΩÔøΩo da tela em 30
+    if (AccumDeltaT > 1.0/30) // fixa a atualização da tela em 30
     {
         AccumDeltaT = 0;
         //angulo+=0.05;
@@ -233,7 +235,7 @@ void InterseptaArestas(Poligono P)
         if (HaInterseccao(PontoClicado,Esq, P1, P2))
             P.desenhaAresta(i);
     }*/
-    
+
 }
 // **********************************************************************
 //  void display( void )
@@ -243,7 +245,7 @@ void display( void )
 	// Limpa a tela coma cor de fundo
 	glClear(GL_COLOR_BUFFER_BIT);
 
-    // Define os limites lÔøΩgicos da area OpenGL dentro da Janela
+    // Define os limites lógicos da area OpenGL dentro da Janela
 	glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -257,21 +259,45 @@ void display( void )
 
     glRotatef(angulo, 0,0,1);
     glLineWidth(2);
-    
+
     Poligono P;
     for (int i=0; i<Voro.getNPoligonos(); i++)
     {
         defineCor(CoresDosPoligonos[i]);
         P = Voro.getPoligono(i);
         P.pintaPoligono();
+
+        //calcula centro do poligono
+        int numVertices = P.getNVertices();
+        double centroX=0.0;
+        double centroY=0.0;
+
+        for (int j=0; j<numVertices; j++)
+        {
+            Ponto vertice = P.getVertice(j);
+            centroX += vertice.x;
+            centroY += vertice.y;
+        }
+
+        centroX/=numVertices;
+        centroY/=numVertices;
+
+        char num[10];
+        sprintf(num, "%d", i+1);
+
+        printString(num,abs(centroX),abs(centroY));
     }
+
     glColor3f(0,0,0);
     for (int i=0; i<Voro.getNPoligonos(); i++)
     {
         P = Voro.getPoligono(i);
         P.desenhaPoligono();
     }
-        
+
+    glColor3f(1,1,1);
+    DesenhaPonto(pontoMovel,8);
+
     if (desenha)
     {
         desenha = false;
@@ -297,8 +323,8 @@ void display( void )
 }
 // **********************************************************************
 // ContaTempo(double tempo)
-//      conta um certo nÔøΩmero de segundos e informa quanto frames
-// se passaram neste perÔøΩodo.
+//      conta um certo número de segundos e informa quanto frames
+// se passaram neste período.
 // **********************************************************************
 void ContaTempo(double tempo)
 {
@@ -333,6 +359,18 @@ void keyboard ( unsigned char key, int x, int y )
         case ' ':
             desenha = !desenha;
             break;
+        case 'w': // ponto movel pra cima
+            pontoMovel.y += 0.2; // Ajuste a quantidade de movimento desejada
+            break;
+        case 's': // Tecla 's' - mover para baixo
+            pontoMovel.y -= 0.2; // Ajuste a quantidade de movimento desejada
+            break;
+        case 'a': // Tecla 'a' - mover para a esquerda
+            pontoMovel.x -= 0.2; // Ajuste a quantidade de movimento desejada
+            break;
+        case 'd': // Tecla 'd' - mover para a direita
+            pontoMovel.x += 0.2; // Ajuste a quantidade de movimento desejada
+            break;
 		default:
 			break;
 	}
@@ -357,10 +395,10 @@ void arrow_keys ( int a_keys, int x, int y )
 	}
 }
 // **********************************************************************
-// Esta funÔøΩÔøΩo captura o clique do botao direito do mouse sobre a ÔøΩrea de
-// desenho e converte a coordenada para o sistema de referÔøΩncia definido
-// na glOrtho (ver funÔøΩÔøΩo reshape)
-// Este cÔøΩdigo ÔøΩ baseado em http://hamala.se/forums/viewtopic.php?t=20
+// Esta função captura o clique do botao direito do mouse sobre a área de
+// desenho e converte a coordenada para o sistema de referência definido
+// na glOrtho (ver função reshape)
+// Este código é baseado em http://hamala.se/forums/viewtopic.php?t=20
 // **********************************************************************
 void Mouse(int button,int state,int x,int y)
 {
@@ -407,38 +445,38 @@ int  main ( int argc, char** argv )
     // que aparecera na barra de titulo da janela.
     glutCreateWindow    ( "Poligonos em OpenGL" );
 
-    // executa algumas inicializaÔøΩÔøΩes
+    // executa algumas inicializaÁıes
     init ();
 
     // Define que o tratador de evento para
     // o redesenho da tela. A funcao "display"
-    // serÔøΩ chamada automaticamente quando
-    // for necessÔøΩrio redesenhar a janela
+    // ser· chamada automaticamente quando
+    // for necess·rio redesenhar a janela
     glutDisplayFunc ( display );
 
     // Define que o tratador de evento para
-    // o invalidaÔøΩÔøΩo da tela. A funcao "display"
-    // serÔøΩ chamada automaticamente sempre que a
-    // mÔøΩquina estiver ociosa (idle)
+    // o invalidação da tela. A funcao "display"
+    // ser· chamada automaticamente sempre que a
+    // máquina estiver ociosa (idle)
     glutIdleFunc(animate);
 
     // Define que o tratador de evento para
     // o redimensionamento da janela. A funcao "reshape"
-    // serÔøΩ chamada automaticamente quando
-    // o usuÔøΩrio alterar o tamanho da janela
+    // ser· chamada automaticamente quando
+    // o usu·rio alterar o tamanho da janela
     glutReshapeFunc ( reshape );
 
     // Define que o tratador de evento para
     // as teclas. A funcao "keyboard"
-    // serÔøΩ chamada automaticamente sempre
-    // o usuÔøΩrio pressionar uma tecla comum
+    // ser· chamada automaticamente sempre
+    // o usu·rio pressionar uma tecla comum
     glutKeyboardFunc ( keyboard );
 
     // Define que o tratador de evento para
     // as teclas especiais(F1, F2,... ALT-A,
     // ALT-B, Teclas de Seta, ...).
-    // A funcao "arrow_keys" serÔøΩ chamada
-    // automaticamente sempre o usuÔøΩrio
+    // A funcao "arrow_keys" ser· chamada
+    // automaticamente sempre o usu·rio
     // pressionar uma tecla especial
     glutSpecialFunc ( arrow_keys );
 

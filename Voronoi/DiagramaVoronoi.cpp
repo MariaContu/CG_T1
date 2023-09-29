@@ -7,13 +7,12 @@
 //
 
 #include "DiagramaVoronoi.h"
-#include "Envelope.h"
 
 ifstream input;            // ofstream arq;
 
 Voronoi::Voronoi()
 {
-    
+
 }
 Poligono Voronoi::LeUmPoligono()
 {
@@ -46,7 +45,7 @@ void Voronoi::LePoligonos(const char *nome)
         exit(0);
     }
     string S;
-    
+
     input >> qtdDePoligonos;
     cout << "qtdDePoligonos:" << qtdDePoligonos << endl;
     Ponto A, B;
@@ -56,7 +55,7 @@ void Voronoi::LePoligonos(const char *nome)
     {
         Diagrama[i] = LeUmPoligono();
         Diagrama[i].obtemLimites(A, B); // obtem o envelope do poligono
-        
+
         Min = ObtemMinimo (A, Min);
         Max = ObtemMaximo (B, Max);
     }
@@ -83,7 +82,7 @@ void Voronoi::obtemLimites(Ponto &min, Ponto &max)
     max = this->Max;
 }
 
-void Voronoi::obtemVizinhosDasArestas()
+void obtemVizinhosDasArestas()
 {
-    //codigo que obtem os vizinhos das arestas
+
 }

@@ -85,15 +85,15 @@
 1584988348 source:d:\pinho\poligonos\temporizador.cpp
 	"Temporizador.h"
 
-1695237540 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.cpp
+1695937050 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.cpp
 	"DiagramaVoronoi.h"
 
-1695237540 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.h
+1695934836 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.h
 	<iostream>
 	<fstream>
 	"Poligono.h"
 
-1695237540 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.h
+1695934836 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.h
 	<iostream>
 	<windows.h>
 	<glut.h>
@@ -102,28 +102,28 @@
 	"Ponto.h"
 	<vector>
 
-1695237541 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\glut.h
+1695934837 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\glut.h
 	"freeglut.h"
 
-1695237541 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\freeglut.h
+1695934837 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\freeglut.h
 	"freeglut_std.h"
 	"freeglut_ext.h"
 
-1695237542 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\freeglut_std.h
+1695934837 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\freeglut_std.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1695237541 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\freeglut_ext.h
+1695934837 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\gl\freeglut_ext.h
 
-1695237539 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\ponto.h
+1695934835 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\ponto.h
 	<iostream>
 	<cmath>
 
-1695237540 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\envelope.cpp
+1695934836 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\envelope.cpp
 	"Envelope.h"
 
-1695237540 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\envelope.h
+1695934836 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\envelope.h
 	<iostream>
 	<windows.h>
 	<glut.h>
@@ -131,7 +131,37 @@
 	<glut.h>
 	"Ponto.h"
 
-1695237540 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\exibevariospoligonos.cpp
+1695934836 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\listadecoresrgb.cpp
+	"ListaDeCoresRGB.h"
+
+1695934835 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\listadecoresrgb.h
+	<iostream>
+	<cmath>
+	<ctime>
+	<fstream>
+	<windows.h>
+	<glut.h>
+	<sys/time.h>
+	<GLUT/glut.h>
+	<glut.h>
+
+1695934835 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.cpp
+	<iostream>
+	<fstream>
+	"Poligono.h"
+
+1695939872 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\ponto.cpp
+	"Ponto.h"
+
+1695934836 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\temporizador.cpp
+	"Temporizador.h"
+
+1695934835 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+
+1695942967 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\exibevariospoligonos.cpp
 	<iostream>
 	<cmath>
 	<ctime>
@@ -146,35 +176,5 @@
 	"Poligono.h"
 	"DiagramaVoronoi.h"
 	"ListaDeCoresRGB.h"
-	"Temporizador.h"
-
-1695237539 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\listadecoresrgb.h
-	<iostream>
-	<cmath>
-	<ctime>
-	<fstream>
-	<windows.h>
-	<glut.h>
-	<sys/time.h>
-	<GLUT/glut.h>
-	<glut.h>
-
-1695237539 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\temporizador.h
-	<iostream>
-	<windows.h>
-	<sys/time.h>
-
-1695237540 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\listadecoresrgb.cpp
-	"ListaDeCoresRGB.h"
-
-1695237539 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.cpp
-	<iostream>
-	<fstream>
-	"Poligono.h"
-
-1695237540 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\ponto.cpp
-	"Ponto.h"
-
-1695237540 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\temporizador.cpp
 	"Temporizador.h"
 
