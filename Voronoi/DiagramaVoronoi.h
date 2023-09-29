@@ -28,6 +28,7 @@ public:
     Poligono getPoligono(int i);
     void obtemLimites(Ponto &min, Ponto &max);
     unsigned int getNPoligonos();
+    void obtemVizinhosDasArestas();
 };
 
 #endif /* DiagramaVoronoi_h */

@@ -7,6 +7,7 @@
 //
 
 #include "DiagramaVoronoi.h"
+#include "Envelope.h"
 
 ifstream input;            // ofstream arq;
 
@@ -62,7 +63,6 @@ void Voronoi::LePoligonos(const char *nome)
     cout << "Lista de Poligonos lida com sucesso!" << endl;
 
 }
-
 Poligono Voronoi::getPoligono(int i)
 {
     if (i >= qtdDePoligonos)
@@ -81,8 +81,27 @@ void Voronoi::obtemLimites(Ponto &min, Ponto &max)
     min = this->Min;
     max = this->Max;
 }
-
-void obtemVizinhosDasArestas()
+/*
+void Voronoi::obtemVizinhosDasArestas()
 {
+    for (int i = 0; i < this->getNPoligonos(); i++) {
+        Poligono p1 = this->getPoligono(i);
+        Poligono p2 = this->getPoligono((i + 1) % this->getNPoligonos());
 
+        for (int j = 0; j < p1.getNVertices(); j++) {
+            Ponto p1a = p1.getVertice(j);
+            Ponto p1b = p1.getVertice((j + 1) % p1.getNVertices());
+
+            for (int k = 0; k < p2.getNVertices(); k++) {
+                Ponto p2a = p2.getVertice(k);
+                Ponto p2b = p2.getVertice((k + 1) % p2.getNVertices());
+
+                if (p1a == p2b && p1b == p2a) {
+                    p1.addVizinho(&p2);
+                    p2.addVizinho(&p1);
+                }
+            }
+        }
+    }
 }
+*/
