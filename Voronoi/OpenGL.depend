@@ -85,20 +85,22 @@
 1584988348 source:d:\pinho\poligonos\temporizador.cpp
 	"Temporizador.h"
 
-1695937050 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.cpp
+1696035035 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.cpp
 	"DiagramaVoronoi.h"
+	"Envelope.h"
 
-1695934836 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.h
+1696023822 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\diagramavoronoi.h
 	<iostream>
 	<fstream>
 	"Poligono.h"
 
-1695934836 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.h
+1696036697 c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.h
 	<iostream>
 	<windows.h>
 	<glut.h>
 	<GLUT/glut.h>
 	<glut.h>
+	"Envelope.h"
 	"Ponto.h"
 	<vector>
 
@@ -145,10 +147,12 @@
 	<GLUT/glut.h>
 	<glut.h>
 
-1695934835 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.cpp
+1696037504 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\poligono.cpp
 	<iostream>
 	<fstream>
 	"Poligono.h"
+	"Envelope.h"
+	"Ponto.h"
 
 1695939872 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\ponto.cpp
 	"Ponto.h"
@@ -161,7 +165,7 @@
 	<windows.h>
 	<sys/time.h>
 
-1695942967 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\exibevariospoligonos.cpp
+1696036375 source:c:\users\mesco\onedrive\documentos\cc\cg\cg_t1\voronoi\exibevariospoligonos.cpp
 	<iostream>
 	<cmath>
 	<ctime>
@@ -175,6 +179,7 @@
 	"Ponto.h"
 	"Poligono.h"
 	"DiagramaVoronoi.h"
+	"Envelope.h"
 	"ListaDeCoresRGB.h"
 	"Temporizador.h"
 

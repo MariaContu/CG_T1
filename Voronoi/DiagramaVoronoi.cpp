@@ -81,27 +81,26 @@ void Voronoi::obtemLimites(Ponto &min, Ponto &max)
     min = this->Min;
     max = this->Max;
 }
-/*
+
 void Voronoi::obtemVizinhosDasArestas()
 {
     for (int i = 0; i < this->getNPoligonos(); i++) {
-        Poligono p1 = this->getPoligono(i);
-        Poligono p2 = this->getPoligono((i + 1) % this->getNPoligonos());
+        Poligono poli1 = this->getPoligono(i);
+        Poligono poli2 = this->getPoligono((i + 1) % this->getNPoligonos());
 
-        for (int j = 0; j < p1.getNVertices(); j++) {
-            Ponto p1a = p1.getVertice(j);
-            Ponto p1b = p1.getVertice((j + 1) % p1.getNVertices());
+        for (int j = 0; j < poli1.getNVertices(); j++) {
+            Ponto p1a = poli1.getVertice(j);
+            Ponto p1b = poli1.getVertice((j + 1) % poli1.getNVertices());
 
-            for (int k = 0; k < p2.getNVertices(); k++) {
-                Ponto p2a = p2.getVertice(k);
-                Ponto p2b = p2.getVertice((k + 1) % p2.getNVertices());
+            for (int k = 0; k < poli2.getNVertices(); k++) {
+                Ponto p2a = poli2.getVertice(k);
+                Ponto p2b = poli2.getVertice((k + 1) % poli2.getNVertices());
 
                 if (p1a == p2b && p1b == p2a) {
-                    p1.addVizinho(&p2);
-                    p2.addVizinho(&p1);
+                    poli1.addVizinho(poli2);
+                    poli2.addVizinho(poli1);
                 }
             }
         }
     }
 }
-*/

@@ -26,16 +26,25 @@ using namespace std;
 #include <glut.h>
 #endif
 
+#include "Envelope.h"
 #include "Ponto.h"
 #include <vector>
 
 class Poligono
 {
     vector <Ponto> Vertices;
+    vector <Poligono> vizinhos;
+    Envelope envelopePol;
     Ponto Min, Max;
+
 public:
     Poligono();
     Ponto getVertice(int);
+    void addVizinho(Poligono vizinho);
+    Poligono getVizinho(int i);
+    void addEnvelope(Envelope envelopePol);
+    Envelope getEnvelope();
+    bool pontoDentroDoPoligono(Ponto p, Poligono pol);
     unsigned long getNVertices();
     void insereVertice(Ponto);
     void insereVertice(Ponto p, int pos);

@@ -49,6 +49,8 @@ double AccumDeltaT=0;
 
 Envelope E;
 
+Poligono poligono;
+
 Poligono Pontos;
 
 Voronoi Voro;
@@ -60,11 +62,13 @@ Ponto MinPol,MaxPol;
 
 Ponto pontoMovel;
 
-Poligono poligonoAtual;
-Poligono poligonoAnterior;
+int poligonoAtual;
+int poligonoAnterior;
 
 bool desenha = false;
 bool FoiClicado = false;
+bool inclusaoEmPoligonoConvexo(Ponto ponto,Poligono poligono);
+void inclusaoEmPoligonoConcavo(Ponto pontoMovel);
 
 float angulo=0.0;
 
@@ -126,8 +130,11 @@ void init()
 
     Voro.LePoligonos("19-polygons.txt");
     Voro.obtemLimites(Min,Max);
+    Voro.obtemVizinhosDasArestas();
     Min.imprime("Minimo:", "\n");
     Max.imprime("Maximo:", "\n");
+
+    poligonoAtual = 7; //poligono q inicia o pontoMovel
 
     pontoMovel = Ponto(4,4);
 
@@ -316,10 +323,10 @@ void display( void )
 
         P.obtemLimites(MinPol,MaxPol);
 
-        //cria um envelope para cada pol�gono
         E = Envelope(MinPol,MaxPol);
-        //glColor3f(1,0,1);
-        //E.Desenha(); //desenha os envelopes de cada polígono
+        P.addEnvelope(E);
+        //adiciona envelope para poligono
+
     }
 
     glColor3f(0,0,0); // R, G, B [0..1]
@@ -332,10 +339,20 @@ void display( void )
         desenha = false;
     }
 
-    //Mapa.desenhaVertices();
-    //glColor3f(1,0,0); // R, G, B  [0..1]
-    //DesenhaLinha(Mapa.getVertice(0), Ponto(Min.x, Max.y));
+    //vamos verificar se o ponto esta dentro do mesmo poligono
+    if (!inclusaoEmPoligonoConvexo(pontoMovel, Voro.getPoligono(poligonoAtual))) {
+        poligonoAnterior = poligonoAtual; // Atualize o polígono anterior
 
+        //inclusao em poligonos concavos
+        inclusaoEmPoligonoConcavo(pontoMovel);
+        //inclusao em poligonos convexos
+        inclusaoEmPoligonoConvexo(pontoMovel,Voro.getPoligono(poligonoAtual));
+
+
+    }
+    else{
+        cout<<"Ponto continua no poligono "<<poligonoAtual+1<<endl;
+    }
     glutSwapBuffers();
 }
 // **********************************************************************
@@ -503,4 +520,58 @@ int  main ( int argc, char** argv )
     glutMainLoop ( );
 
     return 0;
+}
+bool inclusaoEmPoligonoConvexo(Ponto ponto, Poligono poligono)
+{
+    int numVertices = poligono.getNVertices();
+    bool dentro = false;
+
+    for (int i = 0, j = numVertices - 1; i < numVertices; j = i++) {
+        const Ponto v1 = poligono.getVertice(i);
+        const Ponto v2 = poligono.getVertice(j);
+
+        if (((v1.y > ponto.y) != (v2.y > ponto.y)) &&
+            (ponto.x < (v2.x - v1.x) * (ponto.y - v1.y) / (v2.y - v1.y) + v1.x)) {
+            dentro = !dentro;
+        }
+    }
+
+    return dentro;
+}
+void inclusaoEmPoligonoConcavo(Ponto pontoMovel)
+{
+    Ponto Esq;
+    Ponto Dir(-1, 0);
+    Esq = pontoMovel + Dir * (1000);
+
+    int qntChamadaInterseccao = 0;
+    int qntinterseccao = 0;
+    Ponto P1, P2;
+    Poligono P; // Missing semicolon here
+    for (int i = 0; i < Voro.getNPoligonos(); i++)
+    {
+        P = Voro.getPoligono(i);
+        Ponto MaxPol, MinPol;
+        P.obtemLimites(MinPol, MaxPol);
+
+        for (int j = 0; j < P.getNVertices(); j++)
+        {
+            P.getAresta(i, P1, P2);
+            //if(PassaPelaFaixa(i,F))
+            glColor3f(1, 1, 1);
+            qntChamadaInterseccao++;
+            if (HaInterseccao(pontoMovel, Esq, P1, P2))
+                qntinterseccao++;
+        }
+
+        if (qntinterseccao % 2 == 1)
+        {
+            poligonoAnterior = i;
+        }
+    }
+}
+
+int inclusaoEmPoligonoConvexoComVizinhos()
+{
+    //deve retornar qual o poligonoAtual, ou seja, qual o novo poligono que o ponto esta
 }

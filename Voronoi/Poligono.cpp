@@ -11,6 +11,7 @@ using namespace std;
 
 #include "Poligono.h"
 #include "Envelope.h"
+#include "Ponto.h"
 
 Envelope envelope;
 
@@ -19,11 +20,42 @@ Poligono::Poligono()
 
 }
 
+void Poligono::addVizinho(Poligono vizinho)
+{
+    vizinhos.push_back(vizinho);
+}
+Poligono Poligono::getVizinho(int i)
+{
+    return vizinhos[i];
+}
+void Poligono::addEnvelope(Envelope envelope)
+{
+    envelopePol=envelope;
+}
+
 void Poligono::insereVertice(Ponto p)
 {
     Vertices.push_back(p);
 }
+Envelope Poligono::getEnvelope()
+{
+    return envelope;
+}
+bool Poligono::pontoDentroDoPoligono(Ponto p, Poligono pol)
+{
+    Ponto min,max;
+    pol.obtemLimites(min,max);
+    Envelope envel = Envelope(min,max);
 
+    if(p.x>min.x && p.x<max.x)
+    {
+        if(p.y>min.y && p.y<max.y)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 void Poligono::insereVertice(Ponto p, int pos)
 {
     if ((pos < 0) || (pos>Vertices.size()))
